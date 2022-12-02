@@ -1,6 +1,6 @@
 #!/opt/homebrew/bin/python3
 """
-https://adventofcode.com/2022/day/1
+https://adventofcode.com/2022/day/2
 
 
 """
