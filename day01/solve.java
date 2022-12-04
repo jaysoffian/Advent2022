@@ -20,13 +20,13 @@ class Main {
 
   public static void part1(List<String> input) {
     var elves = new ArrayList<Integer>();
-    int calories = 0;
-    for (String line : input) {
+    var cals = 0;
+    for (var line : input) {
       if (line.isBlank()) {
-        elves.add(calories);
-        calories = 0;
+        elves.add(cals);
+        cals = 0;
       } else {
-        calories += parseInt(line);
+        cals += parseInt(line);
       }
     }
     System.out.println(Collections.max(elves));
@@ -34,8 +34,8 @@ class Main {
 
   public static void part2(List<String> input) {
     var elves = new ArrayList<Integer>();
-    int cals = 0;
-    for (String line : input) {
+    var cals = 0;
+    for (var line : input) {
       if (line.isBlank()) {
         elves.add(cals);
         cals = 0;
