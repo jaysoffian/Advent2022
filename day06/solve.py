@@ -2,7 +2,6 @@
 """
 https://adventofcode.com/2022/day/6
 """
-from collections import deque
 from functools import partial
 from pathlib import Path
 
@@ -11,11 +10,9 @@ INPUT = (HERE / "input.txt").read_text()
 
 
 def detect(seq, length):
-    d = deque(maxlen=length)
-    for i, ch in enumerate(seq, 1):
-        d.append(ch)
-        if len(set(d)) == length:
-            return i
+    for i in range(len(seq)):
+        if len(set(seq[i : i + length])) == length:
+            return i + length
     return 0
 
 
