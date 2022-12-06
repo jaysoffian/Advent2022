@@ -10,14 +10,12 @@ HERE = Path(__file__).parent
 INPUT = (HERE / "input.txt").read_text()
 
 
-def detect(line, length):
-    d = deque(line[:length], length)
-    if len(set(d)) == length:
-        return length
-    for i, ch in enumerate(line[length:], length):
+def detect(seq, length):
+    d = deque(maxlen=length)
+    for i, ch in enumerate(seq, 1):
+        d.append(ch)
         if len(set(d)) == length:
             return i
-        d.append(ch)
     return 0
 
 
