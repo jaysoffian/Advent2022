@@ -12,11 +12,13 @@ INPUT = (HERE / "input.txt").read_text()
 
 def detect(line, length):
     d = deque(line[:length], length)
+    if len(set(d)) == length:
+        return length
     for i, ch in enumerate(line[length:], length):
         if len(set(d)) == length:
-            break
+            return i
         d.append(ch)
-    return i
+    return 0
 
 
 part1 = partial(detect, length=4)
@@ -24,6 +26,8 @@ part2 = partial(detect, length=14)
 
 
 def main():
+    assert part1("abcd") == 4
+    assert part1("aabbccddeeff") == 0
     assert part1("mjqjpqmgbljsphdztnvjfqwrcgsmlb") == 7
     assert part1("bvwbjplbgvbhsrlpgdmjqwftvncz") == 5
     assert part1("nppdvjthqldpwncqszvftbrmjlhg") == 6
