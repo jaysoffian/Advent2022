@@ -67,7 +67,7 @@ def part2(lines):
 
 def test():
     lines = SAMPLE.splitlines()
-    assert part1(lines) == 21, part1(lines, True)
+    assert part1(lines) == 21
     assert part2(lines) == 8
 
 
