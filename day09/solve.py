@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.11
 """
-https://adventofcode.com/2022/day/8
+https://adventofcode.com/2022/day/9
 """
 import time
 from collections import namedtuple
