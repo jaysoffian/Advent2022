@@ -3,19 +3,26 @@
 https://adventofcode.com/2022/day/10
 """
 from pathlib import Path
+import time
 
 HERE = Path(__file__).parent
 SAMPLE = (HERE / "sample.txt").read_text().strip().splitlines()
 INPUT = (HERE / "input.txt").read_text().strip().splitlines()
 
 
+def clear_screen():
+    print("\033[2J\033[1;1H", end="")
+
+
 class Cpu:
     def __init__(self, lines):
         self.lines = lines
+        self.line = lines[0]
         self.x = 1
 
     def __iter__(self):
         for i, line in enumerate(self.lines, 1):
+            self.line = line
             args = line.split()
             inst = args[0]
             if inst == "noop":
@@ -32,12 +39,18 @@ class Cpu:
 
 
 class Crt:
-    def __init__(self, cpu, num_rows=6, num_cols=40):
+    def __init__(self, cpu, num_rows=6, num_cols=40, animate=False):
         self.rows = [["."] * num_cols for _ in range(num_rows)]
         for i, x in zip(range(0, num_rows * num_cols), cpu):
             row, col = divmod(i, num_cols)
             lit = col - 1 <= x <= col + 1
             self.rows[row % num_rows][col] = "#" if lit else "."
+            if animate:
+                clear_screen()
+                print(self)
+                print(" " * max(0, x - 1) + "-X-"[2 - x :], f"({x})")
+                print(i + 1, cpu.line)
+                time.sleep(1 / 4)
 
     def __str__(self):
         return "\n".join("".join(row) for row in self.rows)
@@ -105,6 +118,8 @@ def main():
     """
     expect = "\n".join(line.strip() for line in expect.strip().splitlines())
     assert part2(INPUT) == expect
+
+    Crt(Cpu(INPUT), animate=True)
 
 
 if __name__ == "__main__":
