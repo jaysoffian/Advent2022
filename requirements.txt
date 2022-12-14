@@ -1,0 +1,4 @@
+celluloid
+matplotlib
+pytest
+typer
