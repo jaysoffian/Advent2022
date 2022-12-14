@@ -49,7 +49,6 @@ def part1(lines):
 
 def part2(lines):
     _, end, graph, starts = parse_maze(lines)
-    shortest_len = math.inf
     spf = DijkstraSPF(graph, end)
     for start in starts:
         shortest_len = min(shortest_len, spf.get_distance(start))
